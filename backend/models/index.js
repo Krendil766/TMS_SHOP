@@ -21,8 +21,8 @@ const DEVICE = sequelize.define("device", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.INTEGER, allowNull: false },
-  rating: { tyep: DataTypes.STRING, defaultValue: 0 },
-  comment: { type: DataTypes.STRING, defaultValue: "" },
+  rating: { type: DataTypes.STRING, defaultValue: 0 },
+  com: { type: DataTypes.STRING, defaultvalue: "0" },
   img: { type: DataTypes.STRING, allowNull: false },
 });
 
@@ -52,6 +52,10 @@ const COMMENT = sequelize.define("comment", {
   text: { type: DataTypes.STRING, alloNull: false },
 });
 
+const TYPE_MANUFACTURER = sequelize.define("type_manufacturer", {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+});
+
 USER.hasOne(BASKET);
 BASKET.belongsTo(USER);
 
@@ -61,4 +65,36 @@ RATING.belongsTo(USER);
 USER.hasMany(COMMENT);
 RATING.belongsTo(USER);
 
+BASKET.hasMany(BASKET_DEVICE);
+BASKET_DEVICE.belongsTo(BASKET);
 
+DEVICE.hasMany(COMMENT);
+COMMENT.belongsTo(DEVICE);
+
+MANUFACTURER.hasMany(DEVICE);
+DEVICE.belongsTo(MANUFACTURER);
+
+TYPE.hasMany(DEVICE);
+DEVICE.belongsTo(TYPE);
+
+DEVICE.hasMany(BASKET_DEVICE);
+BASKET_DEVICE.belongsTo(DEVICE);
+
+DEVICE.hasMany(DEVICE_INFO);
+DEVICE_INFO.belongsTo(DEVICE);
+
+TYPE.belongsToMany(MANUFACTURER, { through: TYPE_MANUFACTURER });
+MANUFACTURER.belongsToMany(TYPE, { through: TYPE_MANUFACTURER });
+
+module.exports = {
+  USER,
+  BASKET,
+  BASKET_DEVICE,
+  DEVICE,
+  DEVICE_INFO,
+  TYPE,
+  MANUFACTURER,
+  RATING,
+  COMMENT,
+  TYPE_MANUFACTURER
+}
