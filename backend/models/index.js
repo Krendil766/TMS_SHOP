@@ -22,7 +22,7 @@ const DEVICE = sequelize.define("device", {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.INTEGER, allowNull: false },
   rating: { type: DataTypes.STRING, defaultValue: 0 },
-  com: { type: DataTypes.STRING, defaultvalue: "0" },
+  comment: { type: DataTypes.STRING, defaultvalue: "0" },
   img: { type: DataTypes.STRING, allowNull: false },
 });
 
@@ -37,7 +37,7 @@ const MANUFACTURER = sequelize.define("manufacturer", {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
 });
 
-const TYPE = sequelize.define("manufacturer", {
+const VIEW = sequelize.define("view", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
 });
@@ -52,7 +52,7 @@ const COMMENT = sequelize.define("comment", {
   text: { type: DataTypes.STRING, alloNull: false },
 });
 
-const TYPE_MANUFACTURER = sequelize.define("type_manufacturer", {
+const VIEW_MANUFACTURER = sequelize.define("type_manufacturer", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
 
@@ -71,11 +71,14 @@ BASKET_DEVICE.belongsTo(BASKET);
 DEVICE.hasMany(COMMENT);
 COMMENT.belongsTo(DEVICE);
 
+VIEW.hasMany(DEVICE);
+DEVICE.belongsTo(VIEW);
+
 MANUFACTURER.hasMany(DEVICE);
 DEVICE.belongsTo(MANUFACTURER);
 
-TYPE.hasMany(DEVICE);
-DEVICE.belongsTo(TYPE);
+DEVICE.hasMany(RATING);
+RATING.belongsTo(DEVICE)
 
 DEVICE.hasMany(BASKET_DEVICE);
 BASKET_DEVICE.belongsTo(DEVICE);
@@ -83,8 +86,8 @@ BASKET_DEVICE.belongsTo(DEVICE);
 DEVICE.hasMany(DEVICE_INFO);
 DEVICE_INFO.belongsTo(DEVICE);
 
-TYPE.belongsToMany(MANUFACTURER, { through: TYPE_MANUFACTURER });
-MANUFACTURER.belongsToMany(TYPE, { through: TYPE_MANUFACTURER });
+VIEW.belongsToMany(MANUFACTURER, { through: VIEW_MANUFACTURER });
+MANUFACTURER.belongsToMany(VIEW, { through: VIEW_MANUFACTURER });
 
 module.exports = {
   USER,
@@ -92,9 +95,9 @@ module.exports = {
   BASKET_DEVICE,
   DEVICE,
   DEVICE_INFO,
-  TYPE,
+  VIEW,
   MANUFACTURER,
   RATING,
   COMMENT,
-  TYPE_MANUFACTURER
+  VIEW_MANUFACTURER
 }
