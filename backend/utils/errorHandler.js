@@ -4,15 +4,15 @@ class ErrorHandler extends Error {
         this.status = status;
         this.message = message;
     }
-    request(message) {
+    static request(message) {
         return new ErrorHandler(404, message)
     }
-    internal(message) {
-        return new ApiError(500, message);
+    static internal(message) {
+        return new ErrorHandler(500, message);
     }
 
-    forbidden(message) {
-        return new ApiError(403, message);
+    static forbidden(message) {
+        return new ErrorHandler(403, message);
     }
 }
 

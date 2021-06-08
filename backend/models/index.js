@@ -6,7 +6,7 @@ const USER = sequelize.define("user", {
   email: { type: DataTypes.STRING, unique: true, allowNull: false },
   password: { type: DataTypes.STRING },
   img: { type: DataTypes.STRING, allowNull: false },
-  person: { type: DataTypes.STRING, defaultvalue: "USER" },
+  person: { type: DataTypes.STRING, defaultValue: "USER" },
 });
 
 const BASKET = sequelize.define("basket", {
@@ -22,7 +22,7 @@ const DEVICE = sequelize.define("device", {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.INTEGER, allowNull: false },
   rating: { type: DataTypes.STRING, defaultValue: 0 },
-  comment: { type: DataTypes.STRING, defaultvalue: "0" },
+  // comment: { type: DataTypes.STRING, defaultvalue: "0" },
   img: { type: DataTypes.STRING, allowNull: false },
 });
 
@@ -49,6 +49,7 @@ const RATING = sequelize.define("rating", {
 
 const COMMENT = sequelize.define("comment", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  title: { type: DataTypes.STRING, allowNull: false },
   text: { type: DataTypes.STRING, alloNull: false },
 });
 
@@ -68,8 +69,11 @@ RATING.belongsTo(USER);
 BASKET.hasMany(BASKET_DEVICE);
 BASKET_DEVICE.belongsTo(BASKET);
 
-DEVICE.hasMany(COMMENT);
+DEVICE.hasMany(COMMENT, { as: "comment_info" });
 COMMENT.belongsTo(DEVICE);
+
+// COMMENT.hasMany(DEVICE);
+// DEVICE.belongsTo(COMMENT);
 
 VIEW.hasMany(DEVICE);
 DEVICE.belongsTo(VIEW);
@@ -78,20 +82,20 @@ MANUFACTURER.hasMany(DEVICE);
 DEVICE.belongsTo(MANUFACTURER);
 
 DEVICE.hasMany(RATING);
-RATING.belongsTo(DEVICE)
+RATING.belongsTo(DEVICE);
 
 DEVICE.hasMany(BASKET_DEVICE);
 BASKET_DEVICE.belongsTo(DEVICE);
 
-DEVICE.hasMany(DEVICE_INFO);
+DEVICE.hasMany(DEVICE_INFO, { as: "info" });
 DEVICE_INFO.belongsTo(DEVICE);
 
 VIEW.belongsToMany(MANUFACTURER, { through: VIEW_MANUFACTURER });
 MANUFACTURER.belongsToMany(VIEW, { through: VIEW_MANUFACTURER });
 
 module.exports = {
-  USER,
   BASKET,
+  USER,
   BASKET_DEVICE,
   DEVICE,
   DEVICE_INFO,
@@ -99,5 +103,5 @@ module.exports = {
   MANUFACTURER,
   RATING,
   COMMENT,
-  VIEW_MANUFACTURER
-}
+  VIEW_MANUFACTURER,
+};

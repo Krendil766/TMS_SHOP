@@ -2,7 +2,7 @@ const { VIEW } = require('../models');
 
 class ViewController {
     async createElement(req, res) {
-        const { name } = req.body;
+        let { name } = req.body;
         const view = await VIEW.create({ name });
         return res.json(view);
     }
@@ -11,7 +11,7 @@ class ViewController {
         return res.json(views);
     }
     async delOneElement(req, res) {
-        const { id } = req.params
+        let { id } = req.params
         const views = await VIEW.findAll();
         if (!id) {
             throw new Error('Нет такого типа товара!!!')
