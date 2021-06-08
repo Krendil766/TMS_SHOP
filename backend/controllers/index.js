@@ -4,6 +4,7 @@ const commentController = require("./CommentConroller");
 const basketController = require("./BasketController");
 const ratingController = require("./RatingConroller");
 const deviceController = require("./DeviceController");
+const userController = require("./UserController");
 
 module.exports = {
   viewController,
@@ -12,4 +13,5 @@ module.exports = {
   basketController,
   ratingController,
   deviceController,
+  userController,
 };

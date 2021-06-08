@@ -7,9 +7,11 @@ const commentRouter = require("./commentRouter");
 const basketRouter = require("./basketRouter");
 const ratingRouter = require("./ratingRouter");
 const deviceRouter = require("./deviceRouter");
+const userRouter = require("./userRouter");
 
 
 
+router.use("/user", userRouter);
 router.use("/device", deviceRouter);
 router.use("/view", viewRouter);
 router.use("/manufacturer", manufacturerRouter);
