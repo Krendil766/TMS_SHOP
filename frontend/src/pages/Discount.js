@@ -3,12 +3,12 @@ import { useEffect } from "react";
 
 const Discount = () => {
   const deviceList = useSelector((state) => state.device.devices.rows);
-  console.log(deviceList);
-  const discountList = deviceList.filter((item) => item.rating < 5);
+  // console.log(deviceList);
+  // const discountList = deviceList.map((item) => item.rating < 5);
 
   return (
     <div>
-      {discountList.map(({ name, id, price, rating, img, info }) => {
+      {/* {discountList.map(({ name, id, price, rating, img, info }) => {
        return(
         <div key={id}>
         <ul>
@@ -20,7 +20,7 @@ const Discount = () => {
         </ul>
       </div>
        )
-      })}
+      })} */}
     </div>
   );
 };

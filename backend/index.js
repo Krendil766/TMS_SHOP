@@ -4,7 +4,7 @@ const express = require("express");
 const sequelize = require("./db");
 const models = require("./models");
 const cors = require("cors");
-const fileUpload = require("express-fileupload");
+const fileUpload = require('express-fileupload');
 const router = require("./routes");
 const errorHandlerMiddlewarean = require("./middleware/errorHandlerMiddleware");
 const path = require('path');
@@ -17,7 +17,8 @@ const PORT = process.env.PORT || 3002;
 app.use(cors());
 app.use(express.json());
 app.use(fileUpload({}))
-app.use(express.static(path.resolve('', 'img')))
+// app.use(express.static(path.resolve(__dirname, "static")));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use("/tms", router);
 app.use(errorHandlerMiddlewarean);
 

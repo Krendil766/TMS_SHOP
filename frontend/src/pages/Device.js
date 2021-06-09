@@ -1,20 +1,23 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getDevice } from "../actions/actionsCreator/DeviceAction";
+import { getDeviceOne } from "../actions/actionsCreator/DeviceAction";
 
 const Device = () => {
   const { id } = useParams();
   const url = `http://localhost:3001/tms/device/${id}`;
+  console.log(id);
 
   const dispatch = useDispatch();
   const deviceItem = useSelector((state) => state.device.devices);
+  console.log(deviceItem);
+  
   const { name, price, rating, img, manufacturerId, viewId, info } = deviceItem;
 
   useEffect(() => {
-    dispatch(getDevice(url));
-  }, [dispatch]);
+    dispatch(getDeviceOne(url));
+  }, []);
 
   return (
       <ul>

@@ -3,6 +3,7 @@ const { DataTypes } = require("sequelize");
 
 const USER = sequelize.define("user", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.STRING, allowNull: false },
   email: { type: DataTypes.STRING, unique: true, allowNull: false },
   password: { type: DataTypes.STRING },
   img: { type: DataTypes.STRING, allowNull: false },
@@ -22,8 +23,10 @@ const DEVICE = sequelize.define("device", {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.INTEGER, allowNull: false },
   rating: { type: DataTypes.STRING, defaultValue: 0 },
-  // comment: { type: DataTypes.STRING, defaultvalue: "0" },
+  comment: { type: DataTypes.STRING },
   img: { type: DataTypes.STRING, allowNull: false },
+  // discount: { type: DataTypes.BOOLEAN, allowNull: false },
+  description:{type:DataTypes.STRING}
 });
 
 const DEVICE_INFO = sequelize.define("device_info", {
@@ -35,11 +38,13 @@ const DEVICE_INFO = sequelize.define("device_info", {
 const MANUFACTURER = sequelize.define("manufacturer", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
+  img: { type: DataTypes.STRING, allowNull: false },
 });
 
 const VIEW = sequelize.define("view", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
+  img: { type: DataTypes.STRING, allowNull: false },
 });
 
 const RATING = sequelize.define("rating", {
