@@ -15,7 +15,7 @@ const App = () => {
       )}
       <Route path={TYPE_ROUTER.HOME_ROUTER} component={Home} exact />
       <Route path={TYPE_ROUTER.ABOUT_ROUTER} component={About} exact />
-      <Route path={TYPE_ROUTER.SALES_ROUTER} component={Discount} exact />
+      <Route path={TYPE_ROUTER.DISCOUNT_ROUTER} component={Discount} exact />
       <Route path={TYPE_ROUTER.CONTACT_ROUTER} component={Contact} exact />
       <Route path={TYPE_ROUTER.REGISTRATION_ROUTER} component={Auth} exact />
       <Route path={TYPE_ROUTER.LOGIN_ROUTER} component={Auth} exact />
