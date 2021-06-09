@@ -1,13 +1,13 @@
-
-import React from 'react'
 import { Container } from 'react-bootstrap';
+
+import ContactMap from '../components/ContactMap';
 
 
 const Contact = () => {
     return (
 
         <Container>
-            Hello
+            <ContactMap />
         </Container>
 
     )

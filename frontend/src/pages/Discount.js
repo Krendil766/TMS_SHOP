@@ -1,9 +1,11 @@
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useSelector,useDispatch } from "react-redux";
+
+
 
 const Discount = () => {
-  const deviceList = useSelector((state) => state.device.devices.rows);
-  // console.log(deviceList);
+  const deviceList = useSelector((state) => state);
+  console.log(deviceList);
   // const discountList = deviceList.map((item) => item.rating < 5);
 
   return (

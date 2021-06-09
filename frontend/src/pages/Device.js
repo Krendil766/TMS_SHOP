@@ -12,23 +12,23 @@ const Device = () => {
   const dispatch = useDispatch();
   const deviceItem = useSelector((state) => state.device.devices);
   console.log(deviceItem);
-  
-  const { name, price, rating, img, manufacturerId, viewId, info } = deviceItem;
+
+  const { name, price, rating, img, manufacturerId, viewId, info, description } = deviceItem;
 
   useEffect(() => {
     dispatch(getDeviceOne(url));
   }, []);
 
   return (
-      <ul>
-          <li>{name}</li>
-          <li>{price}</li>
-          <li>{rating}</li>
-          <li>{img}</li>
-          <li>{manufacturerId}</li>
-          <li>{viewId}</li>
-          <li>{info}</li>
-      </ul>
+    <ul>
+      <li>{name}</li>
+      <li>{price}</li>
+      <li>{rating}</li>
+      <img src={'http://localhost:3001/' + img} alt="photo" />
+      <li>{manufacturerId}</li>
+      <li>{viewId}</li>
+      <li>{description}</li>
+    </ul>
   )
 };
 

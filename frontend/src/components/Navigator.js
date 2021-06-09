@@ -7,7 +7,7 @@ import basket from '../picture/basket.svg';
 import ava from '../picture/аватарка.jpg';
 
 const Navigator = () => {
-  const isAuth = true;
+  const isAuth = false;
   const isPerson = "ADMIN"
   return (
     <Navbar bg="dark" variant="dark">
