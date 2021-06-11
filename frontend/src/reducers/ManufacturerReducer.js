@@ -4,9 +4,16 @@ const initialState = {
   manufactures: [],
   loading: false,
   error: false,
+  selectedManufacturer: []
 };
 
 const reducer = (state = initialState, action) => {
+  if (action.type === ACTION_TYPES.SET_SELECTED_MANUFACTURERS) {
+    return {
+      ...state,
+      selectedManufacturer: action.payload,
+    };
+  }
   if (action.type === ACTION_TYPES.GET_MANUFACTURERS_START) {
     return {
       ...state,
@@ -24,8 +31,8 @@ const reducer = (state = initialState, action) => {
   if (action.type === ACTION_TYPES.GET_MANUFACTURERS_FAILURE) {
     return {
       ...state,
-      loading:false,
-      error: {text:action.payload,ok:true},
+      loading: false,
+      error: { text: action.payload, ok: true },
     };
   }
   return state;

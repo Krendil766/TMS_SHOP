@@ -1,7 +1,7 @@
 import DeviceItem from "./DeviceItem";
 import { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import { Row } from 'react-bootstrap'
 import { getDevice } from "../actions/actionsCreator/DeviceAction";
 
 const DeviceAll = () => {
@@ -23,11 +23,12 @@ const DeviceAll = () => {
   }
 
   return (
-    <div>
-     {devices.rows&&devices.rows.map((device) => (
+
+    <Row className="d-flex">
+      {devices.rows && devices.rows.map((device) => (
         <DeviceItem key={device.id} device={device} />
       ))}
-    </div>
+    </Row>
   );
 };
 

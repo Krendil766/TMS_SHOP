@@ -14,7 +14,7 @@ const ContactMap = () => {
     return (
         <Map
             className="map"
-            style={{ width: '100%', height: '400px' }}
+            style={{ width: '100%', height: '600px' }}
             center={position}
             zoom={17}
         >

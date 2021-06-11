@@ -43,3 +43,30 @@ export const getDeviceOne = (url) => {
   };
 };
 
+export const getDeviceFind = (viewId, manufacturerId, limit, page) => {
+  return async (dispatch) => {
+
+    dispatch({
+      type: ACTION_TYPES.GET_DEVICE_FIND_START
+    })
+
+    try {
+      const response = await axios.get('http://localhost:3001/tms/device', {
+        params: {
+          viewId, manufacturerId, limit, page
+        }
+      })
+
+      dispatch({
+        type: ACTION_TYPES.GET_DEVICE_FIND_SUCCESS,
+        payload:response.data
+      })
+    } catch (e) {
+      dispatch({
+        type: ACTION_TYPES.GET_DEVICE_FIND_FAILURE,
+        payload:e.response.data
+      })
+    }
+  }
+}
+

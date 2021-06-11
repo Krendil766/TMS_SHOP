@@ -1,4 +1,4 @@
-import About from "./About";
+import CustomerReviews from "./CustomerReviews";
 import Admin from "./Admin";
 import Auth from "./Auth";
 import Basket from "./Basket";
@@ -7,5 +7,7 @@ import Device from "./Device";
 import Home from "./Home";
 import Discount from "./Discount";
 import Comment from "./Commetn";
+import Registration from "./Registration";
+import Footer from "./Footer";
 
-export { About, Admin, Auth, Basket, Contact, Device, Home, Discount, Comment };
+export { CustomerReviews, Admin, Auth, Basket, Contact, Device, Home, Discount, Comment, Registration,Footer};

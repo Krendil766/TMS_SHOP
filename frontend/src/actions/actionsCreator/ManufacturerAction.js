@@ -23,3 +23,10 @@ export const getManufacturers = (url) => {
     }
   };
 };
+
+export const setSelectedManufacturer= (item) => {
+  return ({
+    type: ACTION_TYPES.SET_SELECTED_MANUFACTURERS,
+    payload: item
+  })
+}

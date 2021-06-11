@@ -21,3 +21,10 @@ export const getViews = (url) => {
     }
   };
 };
+
+export const setSelectedView = (item) => {
+  return ({
+    type: ACTION_TYPES.SET_SELECTED_VIEW,
+    payload: item
+  })
+}

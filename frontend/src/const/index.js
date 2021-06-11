@@ -1,6 +1,6 @@
 export const TYPE_ROUTER = {
   HOME_ROUTER: "/home",
-  ABOUT_ROUTER: "/about",
+  CUSTOMER_REWIEWS_ROUTER: "/customer",
   DISCOUNT_ROUTER: "/discount",
   CONTACT_ROUTER: "/contact",
   BASKET_ROUTER: "/basket",

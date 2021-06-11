@@ -1,0 +1,40 @@
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footer .logo {
+    color: white;
+    border: 1px solid white;
+    padding: 3px;
+}
+
+.footer .logo:hover {
+    color: rgb(179, 166, 166);
+    cursor: pointer;
+    border: 1px solid rgb(179, 166, 166);
+}
+
+dl,
+ol,
+ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.social a {
+    color: white;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.social a:hover {
+    color: rgb(179, 166, 166);
+}
+
+.social a i {
+    margin-right: 5px;
+}

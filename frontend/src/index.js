@@ -7,6 +7,7 @@ import { compose, applyMiddleware, createStore } from "redux";
 
 import App from "./components/App";
 import Navigator from "./components/Navigator";
+import { Footer } from "./pages";
 import rootReducer from "./reducers";
 
 const store = createStore(
@@ -25,6 +26,7 @@ ReactDOM.render(
       <Router>
         <Navigator />
         <App />
+        <Footer />
       </Router>
     </Provider>
   </React.StrictMode>,
