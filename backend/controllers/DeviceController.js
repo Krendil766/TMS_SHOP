@@ -7,19 +7,20 @@ const ErrorHandler = require("../utils/errorHandler");
 class DeviceController {
   async createElement(req, res, next) {
     try {
-      let { name, price, rating, viewId, manufacturerId, info, comment_info } =
+      let { name, price, rating, viewId, manufacturerId, info, comment_info, description } =
         req.body;
       const { img } = req.files;
       const fileName = uuid.v4() + ".jpg";
-      img.mv(path.resolve(__dirname, "..", "img", fileName));
+      img.mv(path.resolve(__dirname, "..", "public", fileName));
 
       const device = await DEVICE.create({
         name,
         price,
         rating,
+        description,
+        img: fileName,
         viewId,
         manufacturerId,
-        img: fileName,
       });
       if (info) {
         info = JSON.parse(info);
@@ -50,7 +51,7 @@ class DeviceController {
   async getAllElements(req, res) {
     let { viewId, manufacturerId, limit, page } = req.query;
     page = page || 1;
-    limit = limit || 7;
+    limit = limit || 15;
 
     let offset = page * limit - limit;
     let devices;

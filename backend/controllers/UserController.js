@@ -6,18 +6,18 @@ const { USER, BASKET } = require("../models");
 
 const ErrorHandler = require("../utils/errorHandler");
 
-const generateJwt = (id, person, email) => {
-  return jwt.sign({ id, email, person }, process.env.SECRET_KEY, {
+const generateJwt = (id, person, email, name) => {
+  return jwt.sign({ id, email, person, name }, process.env.SECRET_KEY, {
     expiresIn: "24h",
   });
 };
 class UserController {
   async registration(req, res, next) {
-    const { email, password, person } = req.body;
-
+    const { email, password, person, name,} = req.body;
     const { img } = req.files;
+    
     const fileName = uuid.v4() + ".jpg";
-    img.mv(path.resolve(__dirname, "..", "static", fileName));
+    img.mv(path.resolve(__dirname, "..", "public", fileName));
 
     if (!email || !password) {
       return next(ErrorHandler.request("Некорректный email или password"));
@@ -34,11 +34,12 @@ class UserController {
     const user = await USER.create({
       email,
       person,
+      name,
       password: hashPassword,
       img: fileName,
     });
     const basket = await BASKET.create({ userId: user.id });
-    const token = generateJwt(user.id, user.person, user.email);
+    const token = generateJwt(user.id, user.person, user.email, user.name);
     return res.json({ token });
   }
 
@@ -55,14 +56,14 @@ class UserController {
     if (!comparePassword) {
       return next(ErrorHandler.request("Неверный пароль !!!"));
     }
-    const token = generateJwt(user.id, user.person, user.email);
+    const token = generateJwt(user.id, user.person, user.email, user.name);
 
-    return res.json({ token });
+    return res.json({ token});
   }
 
   async check(req, res, next) {
-    const { id, person, email } = req.user;
-    const token = generateJwt(id, person, email);
+    const { id, person, email, name } = req.user;
+    const token = generateJwt(id, person, email, name);
     return res.json({ token });
   }
 }

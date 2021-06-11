@@ -1,0 +1,12 @@
+.comments {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.comments_inner {
+    width: 35%;
+    margin-top: 20px;
+}
